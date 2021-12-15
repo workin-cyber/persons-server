@@ -2,7 +2,7 @@ const persons = []
 let counter = 1
 
 function read(filter) {
-    if (Object.keys(filter).length) {
+    if (Object.keys(filter).length)
         return persons.filter(p => {
             for (const key in filter) {
                 if (p[key] != filter[key])
@@ -10,7 +10,6 @@ function read(filter) {
             }
             return true
         })
-    }
     else
         return persons
 }
