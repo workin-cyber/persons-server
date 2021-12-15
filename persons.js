@@ -1,8 +1,18 @@
 const persons = []
 let counter = 1
 
-function read() {
-    return persons
+function read(filter) {
+    if (Object.keys(filter).length) {
+        return persons.filter(p => {
+            for (const key in filter) {
+                if (p[key] != filter[key])
+                    return false
+            }
+            return true
+        })
+    }
+    else
+        return persons
 }
 
 function create(newPerson) {
