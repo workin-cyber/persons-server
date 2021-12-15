@@ -1,6 +1,6 @@
 
 function getAll() {
-    axios.get('/person?age=26')
+    axios.get('/person')
         .then(result => {
             document.querySelector('#box')
                 .innerHTML = JSON.stringify(result.data)
