@@ -52,5 +52,10 @@ document.querySelector('form')
                 return name ? { ...acc, [name]: value } : acc
             }, {})
 
-        console.log(values)
+        addPerson(values)
     }
+
+
+function addPerson(values) {
+
+}
