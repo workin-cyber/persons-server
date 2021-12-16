@@ -64,3 +64,10 @@ li .details {
 li .details span {
     display: block;
 }
+
+.eyes {
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    width: 70px;
+}

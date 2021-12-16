@@ -40,6 +40,7 @@ function del(id) {
     persons.splice(index, 1)
     return deleted
 }
+
 module.exports = {
     read,
     create,

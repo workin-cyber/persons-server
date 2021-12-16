@@ -14,7 +14,10 @@ function render(arr) {
                 <span>${p.city}</span>
             </div>
             <div>
-                <div class="car-color" style="background-color: ${p.eyeColor};"></div>
+            <div class='eyes'>
+                <i class="far fa-eye" style="color: ${p.eyeColor};"></i>
+                <i class="far fa-eye" style="color: ${p.eyeColor};"></i>
+            </div>
             </div>
         </div>
     </li>`).join('')
@@ -23,18 +26,17 @@ function render(arr) {
 document.querySelector('form')
     .onsubmit = (event) => {
         event.preventDefault()
-        const form = event.target
-
-        const values = Object.values(form)
-            .reduce((acc, curr) => {
-                let { value, name } = curr
-                return name ? { ...acc, [name]: value } : acc
-            }, {})
-
-        addPerson(values)
-
+        addPerson(getAllValues(event.target))
         form.reset()
     }
+
+function getAllValues(form) {
+    return Object.values(form)
+        .reduce((acc, curr) => {
+            let { value, name } = curr
+            return name ? { ...acc, [name]: value } : acc
+        }, {})
+}
 
 function addPerson(values) {
     axios.post('/person', values)
