@@ -7,26 +7,28 @@ getAll()
 function render(arr) {
     document.querySelector('#list').innerHTML =
         arr.map(p => `<li>
-        <strong>${p.firstName} ${p.lastName}</strong>
-        <div class="details">
-            <div>
-                <span>${p.age}</span>
-                <span>${p.city}</span>
+            <i class="far fa-trash-alt x" onclick="deletePerson(${p.id})"></i>
+            <strong>${p.firstName} ${p.lastName}</strong>
+            <div class="details">
+                <div>
+                    <span>${p.age}</span>
+                    <span>${p.city}</span>
+                </div>
+                <div>
+                <div class='eyes' style="color: ${p.eyeColor};">
+                    <i class="far fa-eye" ></i>
+                    <i class="far fa-eye" ></i>
+                </div>
+                </div>
             </div>
-            <div>
-            <div class='eyes'>
-                <i class="far fa-eye" style="color: ${p.eyeColor};"></i>
-                <i class="far fa-eye" style="color: ${p.eyeColor};"></i>
-            </div>
-            </div>
-        </div>
-    </li>`).join('')
+        </li>`).join('')
 }
 
 document.querySelector('form')
     .onsubmit = (event) => {
         event.preventDefault()
-        addPerson(getAllValues(event.target))
+        const values = getAllValues(event.target)
+        addPerson(values)
         form.reset()
     }
 
@@ -43,7 +45,19 @@ function addPerson(values) {
         .then(() => getAll())
 }
 
+async function deletePerson(id) {
+    if (window.confirm(`האם אתה בטוח?`)) {
+        const result = await axios.delete(`/person/${id}`)
+        getAll()
+    }
+}
 
+
+/*function deletePerson(id) {
+    if (window.confirm(`האם אתה בטוח?`))
+        axios.delete(`/person/${id}`)
+            .then(() => getAll())
+}*/
 
 
 /*document.querySelector('form')

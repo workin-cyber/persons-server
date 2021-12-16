@@ -47,6 +47,7 @@ li {
     padding: 10px;
     width: 180px;
     border-radius: 5px;
+    position: relative;
 }
 
 li .car-color {
@@ -70,4 +71,16 @@ li .details span {
     justify-content: space-between;
     font-size: 25px;
     width: 70px;
+}
+
+.x {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.x:hover {
+    color: red;
 }
