@@ -67,6 +67,9 @@ function validate(data, mode) {
                 throw `key '${key}' is required`
         }
 
+        if (!isNaN(Number(data[key])))
+            data[key] = Number(data[key])
+
         if (typeof data[key] != keys[key])
             throw `key '${key}' must be of type '${keys[key]}'`
 

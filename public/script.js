@@ -1,15 +1,10 @@
-let arr = []
-
 function getAll() {
     axios.get('/person')
-        .then(result => {
-            arr = result.data
-            render()
-        })
+        .then(result => render(result.data))
 }
 getAll()
 
-function render() {
+function render(arr) {
     document.querySelector('#list').innerHTML =
         arr.map(p => `<li>
         <strong>${p.firstName} ${p.lastName}</strong>
@@ -24,6 +19,30 @@ function render() {
         </div>
     </li>`).join('')
 }
+
+document.querySelector('form')
+    .onsubmit = (event) => {
+        event.preventDefault()
+        const form = event.target
+
+        const values = Object.values(form)
+            .reduce((acc, curr) => {
+                let { value, name } = curr
+                return name ? { ...acc, [name]: value } : acc
+            }, {})
+
+        addPerson(values)
+
+        form.reset()
+    }
+
+function addPerson(values) {
+    axios.post('/person', values)
+        .then(() => getAll())
+}
+
+
+
 
 /*document.querySelector('form')
     .onsubmit = (event) => {
@@ -40,22 +59,3 @@ function render() {
         })
         console.log(valuesObj)
     }*/
-
-document.querySelector('form')
-    .onsubmit = (event) => {
-        event.preventDefault()
-        const form = event.target
-
-        const values = Object.values(form)
-            .reduce((acc, curr) => {
-                const { value, name } = curr
-                return name ? { ...acc, [name]: value } : acc
-            }, {})
-
-        addPerson(values)
-    }
-
-
-function addPerson(values) {
-
-}
