@@ -1,28 +1,32 @@
+let arr = []
 
 function getAll() {
     axios.get('/person')
         .then(result => {
-            document.querySelector('#box')
-                .innerHTML = JSON.stringify(result.data)
+            arr = result.data
+            render()
         })
 }
+getAll()
 
-document.querySelector('#getList')
-    .onclick = () => {
-        getAll()
-    }
+function render() {
+    document.querySelector('#list').innerHTML =
+        arr.map(p => `<li>
+        <strong>${p.firstName} ${p.lastName}</strong>
+        <div class="details">
+            <div>
+                <span>${p.age}</span>
+                <span>${p.city}</span>
+            </div>
+            <div>
+                <div class="car-color" style="background-color: ${p.eyeColor};"></div>
+            </div>
+        </div>
+    </li>`).join('')
+}
 
-document.querySelector('#addPerson')
-    .onclick = () => {
-        const values = {
-            "firstName": "vv",
-            "lastName": "ouzan",
-            "age": 26,
-            "city": "Jerusalem",
-            "eyeColor": "blue"
-        }
-        axios.post('/person', values)
-            .then(result => {
-                getAll()
-            })
+document.querySelector('form')
+    .onsubmit = (event) => {
+        event.preventDefault()
+
     }

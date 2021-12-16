@@ -11,13 +11,38 @@
 </head>
 
 <body>
-    <h1>hi</h1>
+    <h1>Persons</h1>
+    <div class="flexbox">
+        <form>
+            <h2>Add Person</h2>
+            <input class="input-item" name="firstName" type="text" placeholder="First Name">
+            <input class="input-item" name="lastName" type="text" placeholder="Last Name">
 
-    <button id='getList'>get list</button>
+            <label class="input-item" id='color'>
+                eyes color
+                <input name="eyeColor" type="color">
+            </label>
 
-    <button id='addPerson'>add person</button>
+            <input class="input-item" name="age" type="number" placeholder="Age">
 
-    <div id='box'></div>
+            <select name='city'>
+                <option>Jerusalem</option>
+                <option>Tel Aviv</option>
+                <option>Haifa</option>
+                <option>Be'er Sheva</option>
+            </select>
+            <br />
+
+            <input type="submit" value="Add">
+        </form>
+
+
+        <ul>
+            <h2>List</h2>
+
+            <div id='list'></div>
+        </ul>
+    </div>
 
     <script src="/script.js"></script>
 </body>

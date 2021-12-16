@@ -3,9 +3,7 @@ const Persons = require('./persons')
 module.exports = (app) => {
 
     app.get('/person', (req, res) => {
-        const { query } = req
-
-        res.send(Persons.read(query))
+        res.send(Persons.read(req.query))
     })
 
     app.post('/person', (req, res) => {
