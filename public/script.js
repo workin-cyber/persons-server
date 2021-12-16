@@ -25,8 +25,32 @@ function render() {
     </li>`).join('')
 }
 
+/*document.querySelector('form')
+    .onsubmit = (event) => {
+        event.preventDefault()
+        const form = event.target
+
+        const valuesArr = Object.values(form)
+
+        const valuesObj = {}
+
+        valuesArr.forEach(inp => {
+            const { value, name } = inp
+            if (name) valuesObj[name] = value
+        })
+        console.log(valuesObj)
+    }*/
+
 document.querySelector('form')
     .onsubmit = (event) => {
         event.preventDefault()
+        const form = event.target
 
+        const values = Object.values(form)
+            .reduce((acc, curr) => {
+                const { value, name } = curr
+                return name ? { ...acc, [name]: value } : acc
+            }, {})
+
+        console.log(values)
     }
